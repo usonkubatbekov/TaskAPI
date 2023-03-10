@@ -17,7 +17,7 @@ namespace DataLayer.Repositories.Interfaces
 
         FilesPath CreateFilePath(FilesPath filesPath);
 
-        void UpdateFilePath(FilesPath filesPath);
+        void UpdateFilePath(string filePath);
 
         void DeleteFilePath(FilesPath filesPath);
     }

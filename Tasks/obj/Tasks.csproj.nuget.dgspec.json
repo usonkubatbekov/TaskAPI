@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\Tasks\\Tasks.csproj": {}
+    "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj": {}
   },
   "projects": {
-    "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj": {
+    "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj",
+        "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj",
         "projectName": "DataLayer",
-        "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj",
+        "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj",
         "packagesPath": "C:\\Users\\uson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\obj\\",
+        "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -89,14 +89,14 @@
         }
       }
     },
-    "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\ServiceLayer\\ServiceLayer.csproj": {
+    "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\ServiceLayer\\ServiceLayer.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\ServiceLayer\\ServiceLayer.csproj",
+        "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\ServiceLayer\\ServiceLayer.csproj",
         "projectName": "ServiceLayer",
-        "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\ServiceLayer\\ServiceLayer.csproj",
+        "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\ServiceLayer\\ServiceLayer.csproj",
         "packagesPath": "C:\\Users\\uson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\ServiceLayer\\obj\\",
+        "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\ServiceLayer\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -117,8 +117,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj": {
-                "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj"
+              "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj": {
+                "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj"
               }
             }
           }
@@ -162,14 +162,14 @@
         }
       }
     },
-    "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\Tasks\\Tasks.csproj": {
+    "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\Tasks\\Tasks.csproj",
+        "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj",
         "projectName": "Tasks",
-        "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\Tasks\\Tasks.csproj",
+        "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj",
         "packagesPath": "C:\\Users\\uson\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\Tasks\\obj\\",
+        "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -190,8 +190,8 @@
           "net6.0": {
             "targetAlias": "net6.0",
             "projectReferences": {
-              "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\ServiceLayer\\ServiceLayer.csproj": {
-                "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\ServiceLayer\\ServiceLayer.csproj"
+              "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\ServiceLayer\\ServiceLayer.csproj": {
+                "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\ServiceLayer\\ServiceLayer.csproj"
               }
             }
           }

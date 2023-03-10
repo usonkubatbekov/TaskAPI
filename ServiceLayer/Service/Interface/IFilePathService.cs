@@ -15,7 +15,7 @@ namespace ServiceLayer.Service.Interface
 
         FilePathDto SaveFilePath(FilePathDto filePathDto);
 
-        FilePathDto UpdateFilePath(FilePathDto filePathDto);
+        void UpdateFilePath(string filePath);
 
         FilePathDto DeleteFilePath(FilePathDto filePathDto);
     }

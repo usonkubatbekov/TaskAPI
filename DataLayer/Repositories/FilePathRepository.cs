@@ -40,9 +40,10 @@ namespace DataLayer.Repositories
             _dbcontext.SaveChanges();
             return filesPath;
         }
-        public void UpdateFilePath(FilesPath filesPath)
+        public void UpdateFilePath(string filePath)
         {
-            _dbcontext.Files.Update(filesPath);
+            var filePathFromDb = _dbcontext.Files.AsNoTracking().FirstOrDefault(x => x.FilePath == filePath);
+            _dbcontext.Files.Update(filePathFromDb);
             _dbcontext.SaveChanges();
         }
 

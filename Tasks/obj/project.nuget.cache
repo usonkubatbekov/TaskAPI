@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "dttlLblJBcMbhthg4KDxUTtDAUgyFu1w8F4U3DMshVP0W7xu5KPsVv9l49N4RW7d/49FIxyVxWpJ+KnO8xV/MQ==",
+  "dgSpecHash": "xysHz9jRvaJXZq+QMyxbKcf5ZfumDfADMxuztUTg5DL9h/a5coQ2NEmnVGfol6tnrYMgQTvwV8BJQUfhHkWeJQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\Tasks\\Tasks.csproj",
+  "projectFilePath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\uson\\.nuget\\packages\\automapper\\12.0.1\\automapper.12.0.1.nupkg.sha512",
     "C:\\Users\\uson\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",

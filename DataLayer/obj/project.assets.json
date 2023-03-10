@@ -2346,11 +2346,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj",
+      "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj",
       "projectName": "DataLayer",
-      "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\DataLayer.csproj",
+      "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\DataLayer.csproj",
       "packagesPath": "C:\\Users\\uson\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TasksAPI\\DataLayer\\obj\\",
+      "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\DataLayer\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

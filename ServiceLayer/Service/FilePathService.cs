@@ -36,6 +36,7 @@ namespace ServiceLayer.Service
         public  List<string> GetFilePathByTaskId(int taskId) 
         {
             List<string> result = new List<string>();
+
             var listFilepathfromDb = _mapper.Map<List<FilePathDto>>(_dataManager.FilePathRepo.GetAllFilesPathByTaskId(taskId));
             foreach (var filepath in listFilepathfromDb)
             {
@@ -60,11 +61,9 @@ namespace ServiceLayer.Service
 
         }
 
-        public FilePathDto UpdateFilePath(FilePathDto filePathDto)
+        public void UpdateFilePath(string filePath)
         {
-            var filePathEntitiis = _mapper.Map<FilesPath>(filePathDto);
-            _dataManager.FilePathRepo.UpdateFilePath(filePathEntitiis);
-            return filePathDto;
+            _dataManager.FilePathRepo.UpdateFilePath(filePath);
         }
 
         public FilePathDto DeleteFilePath(FilePathDto filePathDto)
