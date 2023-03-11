@@ -95,19 +95,21 @@ namespace ServiceLayer.Service
         {
             foreach (var file in addedFiles)
             {
-                var fileName = $"{Guid.NewGuid()}_{file.Key}";
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", fileName);
-
-                await using var stream = new FileStream(filePath, FileMode.Create);
-                await file.Value.CopyToAsync(stream);
-
-                var data = new FilesPath
+                if (file.Value.Length < 10 * 1024)
                 {
-                    FilePath = filePath,
-                    TaskId = taskId,
-                };
+                    var fileName = $"{Guid.NewGuid()}_{file.Key}";
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", fileName);
 
-                _dataManager.FilePathRepo.CreateFilePath(data);
+                    await using var stream = new FileStream(filePath, FileMode.Create);
+                    await file.Value.CopyToAsync(stream);
+
+                    var data = new FilesPath
+                    {
+                        FilePath = filePath,
+                        TaskId = taskId,
+                    };
+                    _dataManager.FilePathRepo.CreateFilePath(data);
+                }
             }
         }
 
@@ -120,11 +122,14 @@ namespace ServiceLayer.Service
         {
             foreach (var file in updatedFiles)
             {
+                if(file.FilePath.Length < 10 * 1024)
+                { 
                 var newFile = newFiles[file.FilePath!];
                 var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", file.FilePath!);
 
                 await using var stream = new FileStream(filePath, FileMode.Create);
                 await newFile.CopyToAsync(stream);
+                }
             }
         }
         

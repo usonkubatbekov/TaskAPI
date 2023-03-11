@@ -66,7 +66,6 @@ namespace Tasks.Controllers
         [Route("CreateTask")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        [RequestSizeLimit(10 * 1024)]
         public async Task<IActionResult> CreateTask([FromForm] TaskDtofromPost taskDto)
         {
             if (string.IsNullOrEmpty(Request.GetMultipartBoundary()))
@@ -81,7 +80,7 @@ namespace Tasks.Controllers
 
             var filePaths = new List<FilePathDto>();
 
-            foreach (var file in taskDto.TaskFiles)
+            foreach (var file in taskDto.TaskFiles.Where(file =>file.Length < 10 * 1024))
             {
                 filePaths.Add(new FilePathDto
                 {
@@ -99,7 +98,6 @@ namespace Tasks.Controllers
         }
         
         [HttpPut("update-task")]
-        [RequestSizeLimit(10 * 1024)]
         public async Task<IActionResult> Put([FromForm] TaskDtofromPost taskDto)
         {
 
