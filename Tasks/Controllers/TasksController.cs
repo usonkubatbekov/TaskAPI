@@ -99,79 +99,23 @@ namespace Tasks.Controllers
         }
         
         [HttpPut("update-task")]
+        [RequestSizeLimit(10 * 1024)]
         public async Task<IActionResult> Put([FromForm] TaskDtofromPost taskDto)
         {
 
             if (taskDto is null)
                 throw new Exception("Task can not be null!");
-            else
-            {
+
                 var task = _serviceManager.TaskService.GetTaskById(taskDto.Id); 
                 if (task is null) 
-                {
                     throw new Exception("Task not be found!");
-                }
-                else
-                {
-                    _serviceManager.TaskService.UpdateTask(taskDto);
-                    await _serviceManager.FileService.UpdateTaskFiles(taskDto);
-                }
-            }
+
+             _serviceManager.TaskService.UpdateTask(taskDto);
+
+            await _serviceManager.FileService.UpdateTaskFiles(taskDto);
 
             return Ok(taskDto);
         }
-
-
-        //PUT api/<TasksController>/5
-        //[HttpPut]
-        //public async Task<IActionResult> Put([FromForm] TaskDtofromPost taskDto)
-        //{
-        //    if (taskDto == null)
-        //    {
-        //        return BadRequest("Task is null");
-        //    }
-
-        //    var taskFromDb = _serviceManager.TaskService.GetTaskById(taskDto.Id);
-
-        //    if (taskFromDb == null)
-        //    {
-        //        return BadRequest("Task not found");
-        //    }
-
-        //    var filePathFromDb = _serviceManager.FilePathService.GetFilePathByTaskId(taskDto.Id);
-
-        //    if (filePathFromDb == null)
-        //    {
-        //        return BadRequest("File not found");
-        //    }
-
-        //    string filePaths;
-        //    var filePathsResult = new List<string>();
-
-        //    if (taskDto.TaskFiles != null)
-        //    {
-        //        foreach (var file in taskDto.TaskFiles)
-        //        {
-
-        //            filePaths = await _serviceManager.FileUploadService.FileUploads(file);
-        //            filePathsResult.Add(filePaths);
-        //        }
-        //    }
-        //    var intersectFilePath = filePathFromDb.Intersect(filePathsResult);
-        //    foreach (var file in intersectFilePath)
-        //    {
-        //        _serviceManager.FilePathService.UpdateFilePath(file);
-        //    }
-
-        //    var exceptFilePath = filePathsResult.Except(filePathFromDb);
-        //    foreach (var file in exceptFilePath)
-        //    {
-        //        _serviceManager.FilePathService.
-        //    }
-
-
-        //    return Ok("Good");
-        //}
 
         // DELETE api/<TasksController>/5
         [HttpDelete("{id}")]

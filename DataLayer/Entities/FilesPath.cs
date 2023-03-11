@@ -2,7 +2,7 @@
 {
     public class FilesPath : ID
     {
-        public string FilePath { get; set; }
+        public string? FilePath { get; set; }
 
         public int TaskId { get; set; }
 
