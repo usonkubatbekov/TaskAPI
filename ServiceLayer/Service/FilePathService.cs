@@ -45,7 +45,6 @@ namespace ServiceLayer.Service
             }
 
             return result;
-
         }
 
         public FilePathDto SaveFilePath(FilePathDto filePathDto)

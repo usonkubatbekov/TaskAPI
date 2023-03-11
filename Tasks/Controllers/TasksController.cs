@@ -1,6 +1,7 @@
 ﻿using DataLayer.Entities;
 using Microsoft.AspNetCore.Http.Extensions;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.StaticFiles;
 using ServiceLayer.Dtos;
 using ServiceLayer.Manager.Interface;
 using System.Threading.Tasks;
@@ -45,9 +46,27 @@ namespace Tasks.Controllers
             task.FilePath = filepath;
             return task;
         }
-        
+
+        [HttpGet]
+        [Route("DownloadFile")]
+        public async Task<IActionResult> DownloadFile(string filename)
+        {
+            var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
+
+            var provider = new FileExtensionContentTypeProvider();
+            if (!provider.TryGetContentType(filepath, out var contenttype))
+            {
+                contenttype = "application/octet-stream";
+            }
+
+            var bytes = await System.IO.File.ReadAllBytesAsync(filepath);
+            return File(bytes, contenttype, Path.GetFileName(filepath));
+        }
+
         [HttpPost]
         [Route("CreateTask")]
+        [ProducesResponseType(StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
         [RequestSizeLimit(10 * 1024)]
         public async Task<IActionResult> CreateTask([FromForm] TaskDtofromPost taskDto)
         {
@@ -80,12 +99,29 @@ namespace Tasks.Controllers
 
         }
 
-        // PUT api/<TasksController>/5
+
+        //PUT api/<TasksController>/5
         [HttpPut]
         public async Task<IActionResult> Put([FromForm] TaskDtofromPost taskDto)
         {
+            if (taskDto == null)
+            {
+                return BadRequest("Task is null");
+            }
+
             var taskFromDb = _serviceManager.TaskService.GetTaskById(taskDto.Id);
+
+            if (taskFromDb == null)
+            {
+                return BadRequest("Task not found");
+            }
+
             var filePathFromDb = _serviceManager.FilePathService.GetFilePathByTaskId(taskDto.Id);
+
+            if (filePathFromDb == null)
+            {
+                return BadRequest("File not found");
+            }
 
             string filePaths;
             var filePathsResult = new List<string>();
@@ -94,16 +130,24 @@ namespace Tasks.Controllers
             {
                 foreach (var file in taskDto.TaskFiles)
                 {
+
                     filePaths = await _serviceManager.FileUploadService.FileUploads(file);
                     filePathsResult.Add(filePaths);
                 }
             }
             var intersectFilePath = filePathFromDb.Intersect(filePathsResult);
-            foreach (var file in intersectFilePath) 
+            foreach (var file in intersectFilePath)
             {
                 _serviceManager.FilePathService.UpdateFilePath(file);
             }
-            
+
+            var exceptFilePath = filePathsResult.Except(filePathFromDb);
+            foreach (var file in exceptFilePath)
+            {
+                _serviceManager.FilePathService.
+            }
+
+
             return Ok("Good");
         }
 
