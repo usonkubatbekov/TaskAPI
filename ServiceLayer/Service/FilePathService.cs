@@ -3,11 +3,6 @@ using DataLayer.Entities;
 using ServiceLayer.Dtos;
 using ServiceLayer.Manager.Interface;
 using ServiceLayer.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Service
 {
@@ -33,11 +28,12 @@ namespace ServiceLayer.Service
             return _mapper.Map<List<FilePathDto>>(_dataManager.FilePathRepo.GetAllFilePath());
         }
 
-        public  List<string> GetFilePathByTaskId(int taskId) 
+        public List<string> GetFilePathByTaskId(int taskId) 
         {
             List<string> result = new List<string>();
 
             var listFilepathfromDb = _mapper.Map<List<FilePathDto>>(_dataManager.FilePathRepo.GetAllFilesPathByTaskId(taskId));
+            
             foreach (var filepath in listFilepathfromDb)
             {
                 var intermediateResult = filepath.FilePath;
@@ -45,6 +41,11 @@ namespace ServiceLayer.Service
             }
 
             return result;
+        }
+        
+        public List<FilePathDto> GetFilePathsByTaskId(int taskId)
+        {
+            return _mapper.Map<List<FilePathDto>>(_dataManager.FilePathRepo.GetAllFilesPathByTaskId(taskId));
         }
 
         public FilePathDto SaveFilePath(FilePathDto filePathDto)

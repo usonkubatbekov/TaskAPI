@@ -36,7 +36,7 @@ builder.Services.AddTransient<IFilePathRepository, FilePathRepository>();
 // Services
 builder.Services.AddTransient<ITaskService, TaskService>();
 builder.Services.AddTransient<IFilePathService, FilePathService>();
-builder.Services.AddTransient<IFileUploadService, FileUploadService>();
+builder.Services.AddTransient<IFileService, FileService>();
 
 // Managers
 builder.Services.AddScoped<IServiceManager, ServiceManager>();

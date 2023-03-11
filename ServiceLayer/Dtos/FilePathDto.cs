@@ -1,7 +1,5 @@
 ﻿
 
-using DataLayer.Entities;
-
 namespace ServiceLayer.Dtos
 {
     public class FilePathDto : BaseIdDto

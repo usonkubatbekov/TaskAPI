@@ -1,11 +1,6 @@
 ﻿using DataLayer.Entities;
 using DataLayer.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DataLayer.Repositories
 {
@@ -50,6 +45,19 @@ namespace DataLayer.Repositories
         public void DeleteFilePath(FilesPath filesPath)
         {
             _dbcontext.Files.Remove(filesPath);
+            _dbcontext.SaveChanges(); ;
+        }
+        
+        public void DeleteFilePath(string filePath)
+        {
+            var data = _dbcontext.Files.FirstOrDefault(x=>x.FilePath == filePath);
+
+            if (data is null)
+            {
+                throw new FileNotFoundException($"{filePath} is not find in database");
+            }
+            
+            _dbcontext.Files.Remove(data);
             _dbcontext.SaveChanges(); ;
         }
     }

@@ -1,9 +1,4 @@
 ﻿using ServiceLayer.Service;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Manager.Interface
 {
@@ -13,6 +8,6 @@ namespace ServiceLayer.Manager.Interface
 
         FilePathService FilePathService { get; }
 
-        FileUploadService FileUploadService { get; }
+        FileService FileService { get; }
     }
 }

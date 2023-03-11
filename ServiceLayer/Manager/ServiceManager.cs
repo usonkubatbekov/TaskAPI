@@ -1,11 +1,6 @@
 ﻿using ServiceLayer.Manager.Interface;
 using ServiceLayer.Service;
 using ServiceLayer.Service.Interface;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace ServiceLayer.Manager 
 {
@@ -15,8 +10,8 @@ namespace ServiceLayer.Manager
 
         private readonly IFilePathService _filePathService;
 
-        private readonly IFileUploadService _fileuploadService;
-        public ServiceManager(ITaskService taskService, IFilePathService filePathService, IFileUploadService fileuploadService)
+        private readonly IFileService _fileuploadService;
+        public ServiceManager(ITaskService taskService, IFilePathService filePathService, IFileService fileuploadService)
         {
             _taskService = taskService;
             _filePathService = filePathService;
@@ -25,6 +20,6 @@ namespace ServiceLayer.Manager
 
         public TaskService TaskService { get { return (TaskService) _taskService; } }
         public FilePathService FilePathService { get { return (FilePathService)_filePathService; } }
-        public FileUploadService FileUploadService { get { return (FileUploadService)_fileuploadService; } }
+        public FileService FileService { get { return (FileService)_fileuploadService; } }
     }
 }
