@@ -8,6 +8,6 @@ namespace ServiceLayer.Dtos
 
         public int TaskId { get; set; }
 
-        public TaskDtofromPost TaskDto { get; set; }
+        public TaskfromPostDto TaskFromPostDto { get; set; }
     }
 }

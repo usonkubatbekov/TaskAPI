@@ -8,14 +8,14 @@ namespace ServiceLayer.Mapping
     {
         public MappingProfile() 
         {
-            CreateMap<TaskDtofromPost, DataLayer.Entities.TaskEntity>();
-            CreateMap<DataLayer.Entities.TaskEntity, TaskDtofromPost>();
+            CreateMap<TaskfromPostDto, DataLayer.Entities.TaskEntity>();
+            CreateMap<DataLayer.Entities.TaskEntity, TaskfromPostDto>();
 
             CreateMap<FilePathDto, FilesPath>();
             CreateMap<FilesPath, FilePathDto>();
 
-            CreateMap<TaskDtofromGet, DataLayer.Entities.TaskEntity>();
-            CreateMap<DataLayer.Entities.TaskEntity, TaskDtofromGet>();
+            CreateMap<TaskfromGetDto, DataLayer.Entities.TaskEntity>();
+            CreateMap<DataLayer.Entities.TaskEntity, TaskfromGetDto>();
 
         }
 

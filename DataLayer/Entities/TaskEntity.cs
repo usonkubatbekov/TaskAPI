@@ -2,7 +2,7 @@
 
 namespace DataLayer.Entities
 {
-    public class TaskEntity : ID
+    public class TaskEntity : BaseEntity
     {
         public DateTime DateTimeTask { get; set; }
 

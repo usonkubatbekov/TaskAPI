@@ -13,18 +13,24 @@ namespace Tasks.Controllers
     [ApiController]
     public class TasksController : ControllerBase
     {
+        private readonly IWebHostEnvironment _environment;
+
         private readonly IServiceManager _serviceManager;
 
-        public TasksController(IServiceManager serviceManager)
+        public TasksController(IServiceManager serviceManager, IWebHostEnvironment environment)
         {
             _serviceManager = serviceManager;
+            _environment = environment;
         }
 
-        // GET: api/<TasksController>
+        /// <summary>
+        /// GET: api/<TasksController>
+        /// </summary>
+        /// <returns></returns>
         [HttpGet("All task")]
-        public List<TaskDtofromGet> GetAllTask()
+        public List<TaskfromGetDto> GetAllTask()
         {
-            var tasklist = new List<TaskDtofromGet>();
+            var tasklist = new List<TaskfromGetDto>();
             var task = _serviceManager.TaskService.GetAllTasks();
             foreach (var taskonly  in task) 
             {
@@ -36,9 +42,13 @@ namespace Tasks.Controllers
             return tasklist;
         }
 
-        // GET api/<TasksController>/5
+        /// <summary>
+        /// GET api/<TasksController>/5
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
         [HttpGet("{task by id}")]
-        public TaskDtofromGet Get(int Id)
+        public TaskfromGetDto Get(int Id)
         {
             var task = _serviceManager.TaskService.GetTaskById(Id);
             var filepath = _serviceManager.FilePathService.GetFilePathByTaskId(Id);
@@ -66,11 +76,12 @@ namespace Tasks.Controllers
         [Route("CreateTask")]
         [ProducesResponseType(StatusCodes.Status200OK)]
         [ProducesResponseType(typeof(string), StatusCodes.Status400BadRequest)]
-        public async Task<IActionResult> CreateTask([FromForm] TaskDtofromPost taskDto)
+        public async Task<IActionResult> CreateTask([FromForm] TaskfromPostDto taskDto)
         {
-            if (string.IsNullOrEmpty(Request.GetMultipartBoundary()))
+            var webenvironment = _environment.ContentRootPath;
+            if (!ModelState.IsValid)
             {
-                return BadRequest("Bad post header!");
+                return NotFound();
             }
 
             if (taskDto.TaskFiles is null) 
@@ -84,9 +95,9 @@ namespace Tasks.Controllers
             {
                 filePaths.Add(new FilePathDto
                 {
-                    FilePath = await _serviceManager.FileService.FileUploads(file),
+                    FilePath = await _serviceManager.FileService.FileUploadAsync(file, webenvironment),
                     TaskId = task.Id,
-                    TaskDto = task
+                    TaskFromPostDto = task
                 });
             }
             
@@ -98,8 +109,12 @@ namespace Tasks.Controllers
         }
         
         [HttpPut("update-task")]
-        public async Task<IActionResult> Put([FromForm] TaskDtofromPost taskDto)
+        public async Task<IActionResult> Put([FromForm] TaskfromPostDto taskDto)
         {
+            if (!ModelState.IsValid)
+            {
+                return NotFound();
+            }
 
             if (taskDto is null)
                 throw new Exception("Task can not be null!");
@@ -115,7 +130,10 @@ namespace Tasks.Controllers
             return Ok(taskDto);
         }
 
-        // DELETE api/<TasksController>/5
+        /// <summary>
+        /// DELETE api/<TasksController>/5
+        /// </summary>
+        /// <param name="id"></param>
         [HttpDelete("{id}")]
         public void Delete(int id)
         {

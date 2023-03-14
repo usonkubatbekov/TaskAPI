@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.13">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\ServiceLayer\ServiceLayer.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\Upload\Files\1971c812-25cd-4b7e-855b-18e110027fd3_3 - 2022-10-16- тестовое задание %284%29.txt" />
+    <None Include="wwwroot\Upload\Files\256a203a-311b-47fd-984f-2a0bfa5a728d.txt" />
+    <None Include="wwwroot\Upload\Files\40f4adad-c992-46dc-8e2d-394581d0bc18_3 - 2022-10-16- тестовое задание.txt" />
+    <None Include="wwwroot\Upload\Files\638141384187764305.txt" />
+    <None Include="wwwroot\Upload\Files\638141384187784751.txt" />
+    <None Include="wwwroot\Upload\Files\638141384695837450.txt" />
+    <None Include="wwwroot\Upload\Files\638141384695844050.txt" />
+    <None Include="wwwroot\Upload\Files\88f3e2b3-50a8-4841-990d-7908ca62ae89_jsonwriter.txt" />
+    <None Include="wwwroot\Upload\Files\989166d0-26ce-4174-8ee9-9ff064c40eb2_3 - 2022-10-16- тестовое задание %285%29.txt" />
+    <None Include="wwwroot\Upload\Files\c0165de8-b4d2-4039-a555-5659352fd0fe.txt" />
+    <None Include="wwwroot\Upload\Files\ca7e85b2-4f6c-4fbf-9b19-8d5334f1e642.txt" />
+  </ItemGroup>
+
+</Project>

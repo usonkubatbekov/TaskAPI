@@ -5,7 +5,7 @@ namespace ServiceLayer.Service.Interface
 {
     public interface IFileService
     {
-        public Task<string> FileUploads(IFormFile formFile);
-        Task UpdateTaskFiles(TaskDtofromPost taskDto);
+        Task<string> FileUploadAsync(IFormFile formFile, string environmentPath);
+        Task UpdateTaskFiles(TaskfromPostDto taskDto);
     }
 }

@@ -1,6 +1,6 @@
 ﻿namespace DataLayer.Entities
 {
-    public class FilesPath : ID
+    public class FilesPath : BaseEntity
     {
         public string? FilePath { get; set; }
 

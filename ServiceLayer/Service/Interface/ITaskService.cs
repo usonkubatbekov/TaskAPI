@@ -4,13 +4,13 @@ namespace ServiceLayer.Service.Interface
 {
     public interface ITaskService
     {
-        TaskDtofromGet GetTaskById(int taskId);
+        TaskfromGetDto GetTaskById(int taskId);
 
-        List<TaskDtofromGet> GetAllTasks();
+        List<TaskfromGetDto> GetAllTasks();
 
-        TaskDtofromPost SaveTask(TaskDtofromPost task);
+        TaskfromPostDto SaveTask(TaskfromPostDto task);
 
-        TaskDtofromPost UpdateTask(TaskDtofromPost task);
+        Task<TaskfromPostDto> UpdateTask(TaskfromPostDto task);
 
         public void DeleteTask(int Id);
     }

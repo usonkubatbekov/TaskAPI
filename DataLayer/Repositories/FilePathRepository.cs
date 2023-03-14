@@ -26,7 +26,7 @@ namespace DataLayer.Repositories
 
         public List<FilesPath> GetAllFilesPathByTaskId(int taskId)
         {
-            return _dbcontext.Files.Where(x => x != null && x.TaskId == taskId).ToList();
+            return _dbcontext.Files.Where(x => x.TaskId == taskId).ToList();
         }
 
         public FilesPath CreateFilePath(FilesPath filesPath)

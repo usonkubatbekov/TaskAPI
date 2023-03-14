@@ -17,42 +17,43 @@ namespace ServiceLayer.Service
             _mapper = mapper;
         }
 
-        public TaskDtofromGet GetTaskById(int taskId)
+        public TaskfromGetDto GetTaskById(int taskId)
         {
-            return _mapper.Map<TaskDtofromGet>(_dataManager.TaskRepo.GetTaskById(taskId));
+            return _mapper.Map<TaskfromGetDto>(_dataManager.TaskRepo.GetTaskById(taskId));
         }
 
-        public List<TaskDtofromGet> GetAllTasks()
+        public List<TaskfromGetDto> GetAllTasks()
         {
-            return _mapper.Map<List<TaskDtofromGet>>(_dataManager.TaskRepo.GetAllTask());
+            return _mapper.Map<List<TaskfromGetDto>>(_dataManager.TaskRepo.GetAllTask());
         }
 
-        public TaskDtofromPost SaveTask(TaskDtofromPost taskDto)
+        public TaskfromPostDto SaveTask(TaskfromPostDto taskDto)
         {
-            DataLayer.Entities.TaskEntity? taskEntitiis;
+            DataLayer.Entities.TaskEntity? taskEntities;
             
             if (taskDto.Id !=0)
             {
-                taskEntitiis = _dataManager.TaskRepo.GetTaskById(taskDto.Id);
+                taskEntities = _dataManager.TaskRepo.GetTaskById(taskDto.Id);
             }
             else 
             {
-                taskEntitiis = new DataLayer.Entities.TaskEntity();
+                taskEntities = new DataLayer.Entities.TaskEntity();
             }
 
-            taskEntitiis.TaskName = taskDto.TaskName;
-            taskEntitiis.TaskStatus = taskDto.TaskStatus;
-            taskEntitiis.DateTimeTask = taskDto.DateTimeTask;
+            if (taskEntities != null)
+            {
+                taskEntities.TaskName = taskDto.TaskName;
+                taskEntities.TaskStatus = taskDto.TaskStatus;
+                taskEntities.DateTimeTask = taskDto.DateTimeTask;
 
-            _dataManager.TaskRepo.CreateTask(taskEntitiis);
-
-            return _mapper.Map<TaskDtofromPost>(taskEntitiis);
-
+                _dataManager.TaskRepo.CreateTask(taskEntities);
+            }
+            return _mapper.Map<TaskfromPostDto>(taskEntities);
         }
 
-        public TaskDtofromPost UpdateTask(TaskDtofromPost taskDto)
+        public async Task<TaskfromPostDto> UpdateTask(TaskfromPostDto taskDto)
         {
-            var taskEntitiis = _mapper.Map<DataLayer.Entities.TaskEntity>(taskDto);
+             var taskEntitiis = _mapper.Map<DataLayer.Entities.TaskEntity>(taskDto);
 
             _dataManager.TaskRepo.UpdateTask(taskEntitiis);
 

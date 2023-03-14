@@ -35,9 +35,9 @@ namespace DataLayer.Repositories
             _dbcontext.SaveChanges();
         }
 
-        public void DeleteTask(int id)
+        public void DeleteTask(int _id)
         {
-             var task = GetTaskById(id);
+             var task = GetTaskById(_id);
             _dbcontext.Tasks.Remove(task);
             _dbcontext.SaveChanges();
         }

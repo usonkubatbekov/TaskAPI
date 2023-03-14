@@ -29,28 +29,31 @@ namespace ServiceLayer.Service
         /// <param name="formFile"></param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task<string> FileUploads(IFormFile formFile)
+        public async Task<string> FileUploadAsync(IFormFile formFile,string environmentPath)
         {
             string filename;
+            var environmentFilePath = Path.Combine(environmentPath, "wwwroot\\Upload\\Files");
+
             try
             {
-                var extension = "." + formFile.FileName.Split('.')[formFile.FileName.Split('.').Length - 1];
+                var extension = Path.GetExtension(formFile.FileName);
+
                 filename = Guid.NewGuid() + extension;
 
-                var filepath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files");
+                var filepath = Path.Combine(Directory.GetCurrentDirectory(), environmentFilePath);
 
                 if (!Directory.Exists(filepath))
                 {
                     Directory.CreateDirectory(filepath);
                 }
 
-                var exactpath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", filename);
+                var exactpath = Path.Combine(Directory.GetCurrentDirectory(), environmentFilePath, filename);
                 await using var stream = new FileStream(exactpath, FileMode.Create);
                 await formFile.CopyToAsync(stream);
             }
             catch (Exception ex)
             {
-                throw new Exception("" + ex);
+                throw new Exception("Выполнить невозможно проверьте запрос" + ex);
             }
 
             return filename;
@@ -62,12 +65,12 @@ namespace ServiceLayer.Service
         /// <param name="taskDto"> Task DTO </param>
         /// <returns></returns>
         /// <exception cref="Exception"></exception>
-        public async Task UpdateTaskFiles(TaskDtofromPost taskDto)
+        public async Task UpdateTaskFiles(TaskfromPostDto taskDto)
         {
-            var newFiles = taskDto.TaskFiles.ToDictionary(file => file.FileName);
-
             if (taskDto.TaskFiles is null || !taskDto.TaskFiles.Any())
                 throw new Exception("Task can not be Null!");
+
+            var newFiles = taskDto.TaskFiles.ToDictionary(file => file.FileName);
             
             var existingFiles = _filePathService.GetFilePathsByTaskId(taskDto.Id);
             
@@ -98,7 +101,7 @@ namespace ServiceLayer.Service
                 if (file.Value.Length < 10 * 1024)
                 {
                     var fileName = $"{Guid.NewGuid()}_{file.Key}";
-                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", fileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot,Upload,Files", fileName);
 
                     await using var stream = new FileStream(filePath, FileMode.Create);
                     await file.Value.CopyToAsync(stream);
@@ -120,12 +123,13 @@ namespace ServiceLayer.Service
         /// <param name="newFiles"></param>
         private async Task UpdateFiles(List<FilePathDto> updatedFiles, IReadOnlyDictionary<string, IFormFile> newFiles)
         {
+
             foreach (var file in updatedFiles)
             {
                 if(file.FilePath.Length < 10 * 1024)
                 { 
                 var newFile = newFiles[file.FilePath!];
-                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", file.FilePath!);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot,Upload,Files", file.FilePath!);
 
                 await using var stream = new FileStream(filePath, FileMode.Create);
                 await newFile.CopyToAsync(stream);
@@ -139,7 +143,7 @@ namespace ServiceLayer.Service
         /// <param name="deletedFiles"></param>
         private void DeleteFiles(IEnumerable<FilePathDto> deletedFiles)
         {
-            foreach (var filePath in deletedFiles.Select(file => Path.Combine(Directory.GetCurrentDirectory(), "Upload\\Files", file.FilePath!)).Where(File.Exists))
+            foreach (var filePath in deletedFiles.Select(file => Path.Combine(Directory.GetCurrentDirectory(), "wwwroot,Upload,Files", file.FilePath!)).Where(File.Exists))
             {
                 File.Delete(filePath);
                 _dataManager.FilePathRepo.DeleteFilePath(filePath);

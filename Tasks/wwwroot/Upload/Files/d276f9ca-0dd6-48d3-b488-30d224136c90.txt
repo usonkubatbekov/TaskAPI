@@ -1,0 +1,70 @@
+using Newtonsoft.Json;
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+
+namespace jsonwriter
+{
+    internal class Program
+    {
+        static void Main()
+        {
+            try
+            {
+                var newdata = SurveyReport.GetColleges();
+                var filePath = @"D:\workspace\jsonwriter\jsonwriter\Colleges.json";
+                // Read existing json data
+                var jsonData = System.IO.File.ReadAllText(filePath);
+                var existData = JsonConvert.DeserializeObject<List<College>>(jsonData)
+                          ?? new List<College>();
+                existData.AddRange(newdata);
+                JsonFileUtils.SimpleWrite(existData, filePath);
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
+    }
+
+    public record College(
+    string Name,
+    int NoOfStudents,
+    bool IsPublic);
+
+    public static class SurveyReport
+    {
+        public static List<College> GetColleges() => new()
+    {
+        new("456", 300, false),
+        new("678", 650, true),
+        new("789", 450, true)
+    };
+    }
+
+    // Newtonsoft/JsonFileUtils.cs
+    public static class JsonFileUtils
+    {
+        private static readonly JsonSerializerSettings _options
+            = new() { NullValueHandling = NullValueHandling.Ignore };
+
+        public static void SimpleWrite(object obj, string fileName)
+        {
+            var jsonString = JsonConvert.SerializeObject(obj, _options);
+            File.WriteAllText(fileName, jsonString);
+        }
+    }
+}
+
+                            Console.WriteLine("Введите ID");
+                            int ID = int.Parse(Console.ReadLine());
+                            var FileName = @"C:\Users\uson\source\JsonFile\transaction.json";
+                            var jsondata = System.IO.File.ReadAllText(FileName);
+                            List<Transaction> existData = JsonConvert.DeserializeObject<List<Transaction>>(jsondata);
+                            for (int i = 0; i < ; i++)
+                            {
+                                Console.WriteLine(people[i]);
+                            }

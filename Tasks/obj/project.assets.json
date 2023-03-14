@@ -2666,9 +2666,9 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj",
-      "projectName": "Tasks",
-      "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\Tasks.csproj",
+      "projectUniqueName": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\TaskAPI.csproj",
+      "projectName": "TaskAPI",
+      "projectPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\TaskAPI.csproj",
       "packagesPath": "C:\\Users\\uson\\.nuget\\packages\\",
       "outputPath": "C:\\Users\\uson\\Documents\\GitHub\\TaskAPI\\Tasks\\obj\\",
       "projectStyle": "PackageReference",
